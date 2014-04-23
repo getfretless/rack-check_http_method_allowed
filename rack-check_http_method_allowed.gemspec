@@ -7,10 +7,10 @@ Gem::Specification.new do |spec|
   spec.name          = "rack-check_http_method_allowed"
   spec.version       = Rack::CheckHttpMethodAllowed::VERSION
   spec.authors       = ["David Jones"]
-  spec.email         = ["unixmonkey1@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.email         = ["david@getfretless.com"]
+  spec.summary       = %q{Rack middleware to check HTTP request methods and reject ones Rails cannot handle}
+  spec.description   = %q{Rails maintains a list of HTTP verbs that it can handle in ActionController::Request::HTTP_METHODS, and will 500 if it gets a request it cannot understand. This will log and filter them out, so you don't get unneccessary notification from your exception tracker}
+  spec.homepage      = "https://github.com/getfretless/rack-check_http_method_allowed"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
