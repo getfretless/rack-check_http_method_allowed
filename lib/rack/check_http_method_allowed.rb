@@ -1,7 +1,7 @@
 require "rack/check_http_method_allowed/version"
 
 module Rack
-  module CheckHttpMethodAllowed
+  class CheckHttpMethodAllowed
     # Your code goes here...
   end
 end

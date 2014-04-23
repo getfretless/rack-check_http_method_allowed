@@ -1,5 +1,5 @@
 module Rack
-  module CheckHttpMethodAllowed
+  class CheckHttpMethodAllowed
     VERSION = "0.0.1"
   end
 end
