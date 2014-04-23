@@ -1,9 +1,6 @@
 # Rack::CheckHttpMethodAllowed
 
-Rack middleware to check HTTP request methods and reject ones Rails cannot handle
-
-Rails maintains a list of HTTP verbs that it can handle in `ActionController::Request::HTTP_METHODS`, and will 500 if it gets a request it cannot understand.
-This will log and filter them out, so you don't get unneccessary notification from your exception tracker.
+Rack middleware to check HTTP request methods and reject ones you don't want.
 
 ## Installation
 
@@ -24,6 +21,18 @@ Or install it yourself as:
 In `config/application.rb` inside the main configuration block, add the line:
 
     config.middleware.use 'Rack::CheckHttpMethodAllowed'
+
+By default, this middleware only allows through methods conforming to [RFC2616](http://www.ietf.org/rfc/rfc2616.txt) and [RFC5789](http://www.ietf.org/rfc/rfc5789.txt), which should cover most applications, since the rest are mainly for [WebDAV](http://en.wikipedia.org/wiki/WebDAV) support.
+
+If you need to support a different set of HTTP methods, you can pass them in like so:
+
+    config.middleware.use 'Rack::CheckHttpMethodAllowed', ['GET', 'POST', 'SOMETHINGELSE']
+
+and any methods not listed will be rejected.
+
+Rails maintains a list of HTTP verbs that it can handle in [ActionController::Request::HTTP_METHODS](https://github.com/rails/rails/blob/4-1-stable/actionpack/lib/action_dispatch/http/request.rb#L76), (including WebDAV methods), you can use this instead like so:
+
+    config.middleware.use 'Rack::CheckHttpMethodAllowed', ActionController::Request::HTTP_METHODS
 
 ## Contributing
 
